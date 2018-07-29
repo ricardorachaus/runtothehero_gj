@@ -6,11 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
-	private const string LoseMessage = "You Lose!";
-	private const string WinMessage = "You Win!";
-
-	private bool isNormalActive;
-
 	[SerializeField]
 	private Player player;
 	[SerializeField]
@@ -24,9 +19,15 @@ public class GameManager : MonoBehaviour {
 	private Text menuText;
 	[SerializeField]
 	private GameObject menuPanel;
+	[SerializeField]
+	private GameObject startButton;
+
+	private bool isNormalActive;
+	private const string LoseMessage = "You Lose!";
+	private const string WinMessage = "You Win!";
 
 	private void Start() {
-		Time.timeScale = 1f;
+		Time.timeScale = 0f;
 		alternativeGround.SetActive(false);
 	}
 
@@ -54,6 +55,12 @@ public class GameManager : MonoBehaviour {
 	public void ReloadScene() {
 		var sceneName = SceneManager.GetActiveScene().name;
 		SceneManager.LoadScene(sceneName);
+	}
+
+	public void StartGame() {
+		Time.timeScale = 1f;
+		startButton.SetActive(false);
+		menuPanel.SetActive(false);
 	}
 	
 }
